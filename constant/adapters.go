@@ -14,6 +14,7 @@ const (
 	Socks5
 	URLTest
 	Vmess
+	Redirect
 )
 
 type ProxyAdapter interface {
@@ -53,6 +54,8 @@ func (at AdapterType) String() string {
 		return "URLTest"
 	case Vmess:
 		return "Vmess"
+	case Redirect:
+		return "Redirect"
 	default:
 		return "Unknow"
 	}

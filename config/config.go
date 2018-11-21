@@ -257,6 +257,13 @@ func (c *Config) parseProxies(cfg *RawConfig) error {
 		var proxy C.Proxy
 		var err error
 		switch proxyType {
+		case "redirect":
+			redirectOption := &adapters.RedirectOption{}
+			err = decoder.Decode(mapping, redirectOption)
+			if err != nil {
+				break
+			}
+			proxy = adapters.NewRedirect(*redirectOption)
 		case "ss":
 			ssOption := &adapters.ShadowSocksOption{}
 			err = decoder.Decode(mapping, ssOption)
